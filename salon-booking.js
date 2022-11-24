@@ -42,7 +42,7 @@ module.exports = function SalonBooking(db) {
 
 
     async function findStylistsForTreatment(treatmentId) {
-        let result = await db.oneOrNone('SELECT stylist_id, treatment_id FROM booking join stylist.id on treatmentId.id = day_id where user_id = $1',[treatmentId])
+        let result = await db.oneOrNone('SELECT stylist_id, treatment_id FROM booking join stylist.id on treatment_id.id = treatment.id where treatmenti_d = $1',[treatmentId])
         // SELECT stylist_id, treatment_id FROM booking join stylist.id on treatmentId.id = day_id where user_id = $1 
         return result;
     }
