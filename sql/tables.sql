@@ -34,7 +34,7 @@ commission_percentage float not null
 );
 
 create table booking(
-id serial not null primary key,
+id serial unique not null primary key,
 booking_date  date not null,
 booking_time  time not null,
 client_id int not null,

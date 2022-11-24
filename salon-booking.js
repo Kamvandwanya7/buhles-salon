@@ -5,10 +5,10 @@ module.exports = function SalonBooking(db) {
         return result
     }
 
-    // async function findCLient1(phone_number) {
-    //     let result = await db.oneOrNone('SELECT first_name, last_name, phone_number FROM client WHERE phone_number= $1', [phone_number])
-    //     return result
-    // }
+    async function findClient1(phone_number) {
+        let result = await db.oneOrNone('SELECT first_name, last_name, phone_number FROM client WHERE phone_number= $1', [phone_number])
+        return result
+    }
 
     async function findClient(phone_number) {
         let result = await db.oneOrNone('SELECT * FROM client WHERE phone_number=$1', [phone_number])
@@ -42,9 +42,8 @@ module.exports = function SalonBooking(db) {
 
 
     async function findStylistsForTreatment(treatmentId) {
-        let result = await db.oneOrNone('SELECT stylist_id FROM booking WHERE treatment_id=$1', [treatmentId])
-        // SELECT stylist_id, treatment_id FROM booking join stylist.id on treatmentId.id = day_id where user_id = $1
-        
+        let result = await db.oneOrNone('SELECT stylist_id, treatment_id FROM booking join stylist.id on treatmentId.id = day_id where user_id = $1',[treatmentId])
+        // SELECT stylist_id, treatment_id FROM booking join stylist.id on treatmentId.id = day_id where user_id = $1 
         return result;
     }
 
@@ -55,14 +54,17 @@ module.exports = function SalonBooking(db) {
 
 
     async function totalIncomeForDay() {
-
+        let result = await db.oneOrNone('SELECT SUM(*) booking_date, booking_time FROM booking WHERE client_id=$1', [date, time])
+        return result;
     }
-
+    
     async function mostValuebleClient() {
-
+    
     }
 
-    async function totalCommission() {
+    async function totalCommission(date, stylistId) {
+        let result = await db.oneOrNone('SELECT SUM(*) commission_percentage FROM stylist', [date, stylistId])
+        return result;
 
     }
 
@@ -79,7 +81,7 @@ module.exports = function SalonBooking(db) {
         mostValuebleClient,
         totalCommission,
         makeBooking,
-        // findCLient1
+        findClient1
 
     }
 }  
