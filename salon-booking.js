@@ -5,10 +5,10 @@ module.exports = function SalonBooking(db) {
         return result
     }
 
-    async function findClient1(phone_number) {
-        let result = await db.oneOrNone('SELECT first_name, last_name, phone_number FROM client WHERE phone_number= $1', [phone_number])
-        return result
-    }
+    // async function findClient1(phone_number) {
+    //     let result = await db.oneOrNone('SELECT first_name, last_name, phone_number FROM client WHERE phone_number= $1', [phone_number])
+    //     return result
+    // }
 
     async function findClient(phone_number) {
         let result = await db.oneOrNone('SELECT * FROM client WHERE phone_number=$1', [phone_number])
@@ -81,7 +81,7 @@ module.exports = function SalonBooking(db) {
         mostValuebleClient,
         totalCommission,
         makeBooking,
-        findClient1
+        // findClient1
 
     }
 }  

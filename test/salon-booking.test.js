@@ -59,7 +59,7 @@ describe("The Booking Salon", function () {
 
         const bookingss = await booking.makeBooking("2022-10-29", "09:00", "2", "2", "2");
         const bookings = await booking.findClientBookings("2");
-        console.log(bookings);
+        // console.log(bookings);
         assert.deepEqual([{
             booking_date: new Date('2022-10-28T22:00:00.000Z'),
             booking_time: '09:00:00',
